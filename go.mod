@@ -1,3 +1,3 @@
-module github.com/chunyukuo88/kata_with_go
+module kata
 
 go 1.19
