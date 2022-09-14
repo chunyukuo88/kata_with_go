@@ -11,7 +11,7 @@ import (
 
 var reader = bufio.NewReader(os.Stdin)
 
-func processInputs(weight string, height string) (float64, float64) {
+func ProcessInputs(weight string, height string) (float64, float64) {
 	weight = strings.Replace(weight, "\n", "", -1)
 	height = strings.Replace(weight, "\n", "", -1)
 	weightInt, _ := strconv.ParseFloat(weight, 64)
@@ -19,7 +19,7 @@ func processInputs(weight string, height string) (float64, float64) {
 	return weightInt, heightInt
 }
 
-func getUserHeightAndWeight() (string, string) {
+func GetUserHeightAndWeight() (string, string) {
 	fmt.Println(info.WeightPrompt)
 	weight, _ := reader.ReadString('\n')
 	fmt.Println(info.HeightPrompt)
