@@ -5,7 +5,7 @@ import (
 	"kata/info"
 )
 
-func main() {
+func bmi() {
 	fmt.Println(info.Title)
 	weightInput, heightInput := GetUserHeightAndWeight()
 	weightInt, heightInt := ProcessInputs(weightInput, heightInput)
