@@ -16,10 +16,10 @@ func main() {
 
 	book1.outputData(book1)
 
-	book2 = createBookInstance()
+	book2 = NewBookData()
 }
 
-func createBookInstance() BookData {
+func NewBookData() BookData {
 	fmt.Print("Please enter the book ID:\n> ")
 	id, _ := reader.ReadString('\n')
 	fmt.Print("Enter the title:\n> ")
