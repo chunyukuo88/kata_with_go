@@ -14,12 +14,12 @@ func main() {
 	book1.description = "Book #1, a New York Times #1 Bestseller"
 	book1.price = 12.03
 
-	book1.outputData(book1)
+	book2 = *NewBookData()
 
-	book2 = NewBookData()
+	book2.outputData()
 }
 
-func NewBookData() BookData {
+func NewBookData() *BookData {
 	fmt.Print("Please enter the book ID:\n> ")
 	id, _ := reader.ReadString('\n')
 	fmt.Print("Enter the title:\n> ")
@@ -29,7 +29,7 @@ func NewBookData() BookData {
 	fmt.Print("Enter the price:\n> ")
 	price, _ := reader.ReadString('\n')
 	priceFloat, _ := strconv.ParseFloat(price, 64)
-	return BookData{id, title, description, priceFloat}
+	return &BookData{id, title, description, priceFloat}
 }
 
 type BookData struct {
@@ -39,8 +39,8 @@ type BookData struct {
 	price       float64
 }
 
-func (BookData) outputData(bookData BookData) {
-	fmt.Printf("Here is the book: %v\n", bookData)
+func (bookData *BookData) outputData() {
+	fmt.Printf("Here is the book: %v\n", bookData.title)
 }
 
 // func writeBookDataToFile(book BookData) {
