@@ -7,7 +7,7 @@ import (
 
 var book2 BookData
 
-func main() {
+func practice() {
 	var book1 BookData
 	book1.ID = "123"
 	book1.title = "The Hobbit"
