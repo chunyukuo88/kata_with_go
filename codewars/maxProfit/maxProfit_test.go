@@ -21,3 +21,12 @@ func TestMinMax_largeAndSmall(t *testing.T) {
 		t.Errorf("MinMax(%v) = %v; want %v", arg, got, want)
 	}
 }
+
+func TestMinMax_moreNumbers(t *testing.T) {
+	arg := []int{3, 100, 4, 1, 5, 1000, 6}
+	want := [2]int{1, 1000}
+	got := MinMax(arg)
+	if got != want {
+		t.Errorf("MinMax(%v) = %v; want %v", arg, got, want)
+	}
+}
