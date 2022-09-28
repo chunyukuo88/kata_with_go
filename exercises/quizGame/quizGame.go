@@ -19,6 +19,18 @@ func main() {
 
 	r := csv.NewReader(file)
 	lines, err := r.ReadAll()
+	if err != nil {
+		exit("Application terminated.")
+	}
 
 	fmt.Printf("Here are the lines:\n%v", lines)
+}
+
+type problemSolutionPair struct {
+	q string
+	a string
+}
+
+func exit(message string){
+	fmt.Print(message)
 }
