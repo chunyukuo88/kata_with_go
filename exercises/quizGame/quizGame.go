@@ -23,7 +23,21 @@ func main() {
 		exit("Application terminated.")
 	}
 
-	fmt.Printf("Here are the lines:\n%v", lines)
+	problems := parseLines(lines)
+	for i, problem := range problems {
+		fmt.Printf("Problem #%v: %v = \n", i+1, problem.q)
+	}
+}
+
+func parseLines(lines [][]string) []problemSolutionPair {
+	result := make([]problemSolutionPair, len(lines))
+	for i, line := range lines {
+		result[i] = problemSolutionPair{
+			q: line[0],
+			a: line[1],
+		}
+	}
+	return result
 }
 
 type problemSolutionPair struct {
