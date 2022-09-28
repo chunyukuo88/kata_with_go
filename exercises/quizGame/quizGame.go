@@ -23,10 +23,21 @@ func main() {
 		exit("Application terminated.")
 	}
 
+	numberOfCorrectAnswers := 0
 	problems := parseLines(lines)
+	numberOfProblems := len(lines)
 	for i, problem := range problems {
 		fmt.Printf("Problem #%v: %v = \n", i+1, problem.q)
+		var userResponse string
+		fmt.Scanf("%v\n", &userResponse)
+		if userResponse == problem.a {
+			fmt.Println("Correct!")
+			numberOfCorrectAnswers++
+		} else {
+			fmt.Println("Nope.")
+		}
 	}
+	fmt.Printf("Game Over. You correctly answered %v out of %v problems.\n", numberOfCorrectAnswers, numberOfProblems)
 }
 
 func parseLines(lines [][]string) []problemSolutionPair {
