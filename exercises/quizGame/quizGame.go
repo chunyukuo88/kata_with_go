@@ -30,35 +30,37 @@ func main() {
 
 	numberOfCorrectAnswers := 0
 	numberOfProblems := len(lines)
-    problemloop:
+problemloop:
 	for i, problem := range problems {
 		fmt.Printf("Problem #%v: %v = \n", i+1, problem.q)
-        answerChannel := make(chan string)
-        go getUserResponse(answerChannel)
-	    select {
-	        case <-timer.C:
-                gameOver(numberOfCorrectAnswers, numberOfProblems) 
-                break problemloop 
-            case answer := <- answerChannel:
-		        if answer == problem.a {
-			        fmt.Println("Correct!")
-			        numberOfCorrectAnswers++
-		        } else {
-			        fmt.Println("Nope.")
-		        }
-	    }
+		answerChannel := make(chan string)
+		go func() {
+			var userResponse string
+			fmt.Scanf("&v\n", &userResponse)
+			answerChannel <- userResponse
+		}()
+		select {
+		case <-timer.C:
+			fmt.Println()
+			break problemloop
+		case answer := <-answerChannel:
+			if answer == problem.a {
+				fmt.Println("Correct!")
+				numberOfCorrectAnswers++
+			}
+		}
 	}
-    gameOver(numberOfCorrectAnswers, numberOfProblems) 
+	gameOver(numberOfCorrectAnswers, numberOfProblems)
 }
 
-func gameOver(correct int, total int){
-    fmt.Printf("Game Over. You correctly answered %v out of %v problems.\n", correct, total)
+func gameOver(correct int, total int) {
+	fmt.Printf("Game Over. You correctly answered %v out of %v problems.\n", correct, total)
 }
 
 func getUserResponse(c chan string) {
-    var userResponse string
-    fmt.Scanf("&v\n", &userResponse)
-    c <- userResponse
+	var userResponse string
+	fmt.Scanf("&v\n", &userResponse)
+	c <- userResponse
 }
 
 func parseLines(lines [][]string) []problemSolutionPair {
@@ -77,6 +79,6 @@ type problemSolutionPair struct {
 	a string
 }
 
-func exit(message string){
+func exit(message string) {
 	fmt.Print(message)
 }
