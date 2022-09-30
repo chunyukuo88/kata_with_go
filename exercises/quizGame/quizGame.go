@@ -29,10 +29,9 @@ func main() {
 	timer := time.NewTimer(time.Duration(*timeLimit) * time.Second)
 
 	numberOfCorrectAnswers := 0
-	numberOfProblems := len(lines)
 problemloop:
-	for i, problem := range problems {
-		fmt.Printf("Problem #%v: %v = \n", i+1, problem.q)
+	for i, pair := range problems {
+		fmt.Printf("Problem #%v: %v = \n", i+1, pair.q)
 		answerChannel := make(chan string)
 		go func() {
 			var userResponse string
@@ -44,29 +43,23 @@ problemloop:
 			fmt.Println()
 			break problemloop
 		case answer := <-answerChannel:
-			if answer == problem.a {
+			if answer == pair.a {
 				fmt.Println("Correct!")
 				numberOfCorrectAnswers++
 			}
 		}
 	}
-	gameOver(numberOfCorrectAnswers, numberOfProblems)
+	gameOver(numberOfCorrectAnswers, len(lines))
 }
 
 func gameOver(correct int, total int) {
 	fmt.Printf("Game Over. You correctly answered %v out of %v problems.\n", correct, total)
 }
 
-func getUserResponse(c chan string) {
-	var userResponse string
-	fmt.Scanf("&v\n", &userResponse)
-	c <- userResponse
-}
-
-func parseLines(lines [][]string) []problemSolutionPair {
-	result := make([]problemSolutionPair, len(lines))
+func parseLines(lines [][]string) []questionAnswerPair {
+	result := make([]questionAnswerPair, len(lines))
 	for i, line := range lines {
-		result[i] = problemSolutionPair{
+		result[i] = questionAnswerPair{
 			q: line[0],
 			a: line[1],
 		}
@@ -74,7 +67,7 @@ func parseLines(lines [][]string) []problemSolutionPair {
 	return result
 }
 
-type problemSolutionPair struct {
+type questionAnswerPair struct {
 	q string
 	a string
 }
