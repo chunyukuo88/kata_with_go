@@ -27,23 +27,23 @@ func main() {
 	problems := parseLines(lines)
 
 	timer := time.NewTimer(time.Duration(*timeLimit) * time.Second)
-
 	numberOfCorrectAnswers := 0
+
 problemloop:
 	for i, pair := range problems {
 		fmt.Printf("Problem #%v: %v = \n", i+1, pair.q)
 		answerChannel := make(chan string)
 		go func() {
 			var userResponse string
-			fmt.Scanf("&v\n", &userResponse)
+			fmt.Scanf("%v\n", &userResponse)
 			answerChannel <- userResponse
 		}()
+
 		select {
 		case <-timer.C:
 			fmt.Println()
 			break problemloop
 		case userResponse := <-answerChannel:
-			fmt.Printf("\n\n================\nuserResponse = %v\npair.a = %v\n============\n\n", userResponse, pair.a)
 			if userResponse == pair.a {
 				fmt.Println("Correct!")
 				numberOfCorrectAnswers++
@@ -75,4 +75,5 @@ type questionAnswerPair struct {
 
 func exit(message string) {
 	fmt.Print(message)
+	os.Exit(1)
 }
