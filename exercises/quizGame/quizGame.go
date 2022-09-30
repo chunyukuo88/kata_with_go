@@ -42,8 +42,9 @@ problemloop:
 		case <-timer.C:
 			fmt.Println()
 			break problemloop
-		case answer := <-answerChannel:
-			if answer == pair.a {
+		case userResponse := <-answerChannel:
+			fmt.Printf("\n\n================\nuserResponse = %v\npair.a = %v\n============\n\n", userResponse, pair.a)
+			if userResponse == pair.a {
 				fmt.Println("Correct!")
 				numberOfCorrectAnswers++
 			}
