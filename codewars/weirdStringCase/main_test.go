@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func ToWeirdCase_singleWord(t *testing.T){
+func Test_singleWord(t *testing.T) {
 	arg := "abc"
 	want := "AbC"
 	got := ToWeirdCase(arg)
@@ -13,6 +13,3 @@ func ToWeirdCase_singleWord(t *testing.T){
 		t.Errorf("Wanted %v, got %v", want, got)
 	}
 }
-// func ToWeirdCase_singleWord(t *testing.T){
-
-// }
