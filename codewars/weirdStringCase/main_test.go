@@ -13,3 +13,21 @@ func Test_singleWord(t *testing.T) {
 		t.Errorf("Wanted %v, got %v", want, got)
 	}
 }
+
+func Test_singleWordFourLettersLong(t *testing.T) {
+	arg := "abcd"
+	want := "AbCd"
+	got := ToWeirdCase(arg)
+	if want != got {
+		t.Errorf("Wanted %v, got %v", want, got)
+	}
+}
+
+func Test_multipleWordsOfVaryingLenth(t *testing.T) {
+	arg := "nice tests"
+	want := "NiCe TeStS"
+	got := ToWeirdCase(arg)
+	if want != got {
+		t.Errorf("Wanted %v, got %v", want, got)
+	}
+}
