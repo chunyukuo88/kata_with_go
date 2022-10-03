@@ -20,7 +20,7 @@ func processSingleWord(str string) string {
 		if i == 0 || i%2 == 0 {
 			result = append(result, strings.ToUpper(val))
 		} else {
-			result = append(result, val)
+			result = append(result, strings.ToLower(val))
 		}
 	}
 	return strings.Join(result, "")
