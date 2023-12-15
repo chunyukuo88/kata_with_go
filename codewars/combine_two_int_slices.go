@@ -15,7 +15,11 @@ func includes(slice []int, value int) bool {
 
 func MergeArrays(arr1, arr2 []int) []int {
 	var result []int
-	result = append(result, arr1...)
+	for _, value := range arr1 {
+		if !includes(result, value) {
+			result = append(result, value)
+		}
+	}
 	for _, value := range arr2 {
 		isNewValue := !includes(result, value)
 		if isNewValue {
