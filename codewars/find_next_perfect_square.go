@@ -1,6 +1,7 @@
 package main
 
-// https://www.codewars.com/kata/56269eb78ad2e4ced1000013/train/go
+// Spec https://www.codewars.com/kata/56269eb78ad2e4ced1000013/train/go
+// Others' solutions: https://www.codewars.com/kata/56269eb78ad2e4ced1000013/solutions/go
 import "math"
 
 func isNotSquare(number int64) bool {
